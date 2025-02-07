@@ -1,0 +1,124 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Title */
+h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* Movie Selection */
+label, select, input {
+    font-size: 18px;
+    padding: 8px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+select {
+    background: #444;
+    color: white;
+    border: none;
+}
+
+/* Cinema Layout */
+.cinema {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Screen */
+.screen {
+    width: 250px;
+    height: 50px;
+    background: #000;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Seat Grid */
+#seats-container {
+    display: grid;
+    grid-template-columns: repeat(5, 60px); /* Adjust for better seat layout */
+    gap: 10px;
+}
+
+/* Seat Styling */
+.seat {
+    width: 60px;
+    height: 60px;
+    background: lightgray;
+    border: 2px solid black;
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+/* Seat States */
+.seat:hover {
+    background: #32a852; /* Light green hover */
+}
+
+.seat.selected {
+    background: green;
+    color: white;
+}
+
+.seat.reserved {
+    background: red;
+    color: white;
+    cursor: not-allowed;
+}
+
+/* Payment Section */
+.payment {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.reserve-btn {
+    background: #28a745;
+    color: white;
+}
+
+.reset-btn {
+    background: #dc3545;
+    color: white;
+}
+
+/* Reserved Seats Display */
+#reserved-seats {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: yellow;
+}
