@@ -87,9 +87,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Event listeners for buttons
+    function resetOnMovieChange() {
+        reservedSeats = []; // Clear selected seats
+        localStorage.removeItem("reservedSeats"); // Remove stored reservations
+        paymentInput.value = ""; // Reset payment input
+        renderSeats();
+        displayReservedSeats();
+    }
+
+    // Event listeners
     document.querySelector(".reserve-btn").addEventListener("click", reserveSeats);
     document.querySelector(".reset-btn").addEventListener("click", resetReservations);
+    movieSelect.addEventListener("change", resetOnMovieChange); // Reset when movie changes
 
     renderSeats();
     displayReservedSeats();
