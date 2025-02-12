@@ -3,36 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinema Reservation</title>
-    <link rel="stylesheet" href="style.css"> 
-    <script src="index.js"></script> 
-
+    <title>Cinema Reservation System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Cinema Reservation System</h1>
-    
-    <label for="movie">Select a Movie:</label>
-    <select id="movie">
-    <option value="Mission Impossible">Mission Impossible - ₱380</option>
-    <option value="The Conjuring">The Conjuring - ₱350</option>
-    </select>
 
+    <!-- Header Section -->
+    <header class="header">
+        <img src="logo.png" alt="Cinema Logo" class="logo">
+        <h1 class="title">Cinema Reservation System</h1>
+    </header>
 
-    <div class="cinema">
-        <div class="screen">Screen</div>
-        <div id="seats-container"></div>
-    </div>
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Movie Selection -->
+        <div class="movie-selection">
+            <label for="movieSelect">Select a Movie:</label>
+            <select id="movieSelect">
+                <option value="Mission Impossible">Mission Impossible - ₱380</option>
+                <option value="Conjuring">Conjuring - ₱350</option>
+            </select>
+        </div>
 
-    <div class="payment">
-        <label for="amount">Enter Payment:</label>
-        <input type="number" id="amount" placeholder="Enter amount">
-        <button class="reserve-btn">Reserve</button>
-        <button class="reset-btn">Reset</button>
-    </div>
+        <!-- Screen Representation -->
+        <div class="cinema">
+            <div class="screen">Screen</div>
+            <div id="seats-container">
+                <div class="seat">1</div>
+                <div class="seat">2</div>
+                <div class="seat">3</div>
+                <div class="seat">4</div>
+                <div class="seat">5</div>
+                <div class="seat">6</div>
+                <div class="seat">7</div>
+                <div class="seat">8</div>
+                <div class="seat">9</div>
+                <div class="seat">10</div>
+            </div>
+        </div>
 
-    <h2>Reserved Seats</h2>
-    <div id="reserved-seats"></div>
+        <!-- Payment Section -->
+        <div class="payment">
+            <label for="payment">Enter Payment:</label>
+            <input type="number" id="payment" placeholder="Enter amount">
+        </div>
 
-    <script src="script.js"></script>
+        <!-- Payment Method Selection -->
+        <div class="payment-container">
+            <label for="payment-method">Choose a Payment Method:</label>
+            <select id="payment-method">
+                <option value="paypal">PayPal</option>
+                <option value="gcash">GCash</option>
+                <option value="bdo">BDO</option>
+                <option value="bpi">BPI</option>
+                <option value="others">Other PH Methods</option>
+            </select>
+        </div>
+        
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <button class="reserve-btn">Reserve</button>
+            <button class="reset-btn">Reset</button>
+        </div>
+
+        <!-- Reserved Seats Display -->
+        <div id="reserved-seats">Reserved Seats: None</div>
+
+    </main>
+
+    <script src="index.js"></script>
 </body>
 </html>
