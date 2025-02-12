@@ -1,45 +1,44 @@
 document.addEventListener("DOMContentLoaded", function () {
     const seatsContainer = document.getElementById("seats-container");
     const reservedSeatsDiv = document.getElementById("reserved-seats");
-    const paymentInput = document.getElementById("amount");
-    const movieSelect = document.getElementById("movie");
+    const paymentInput = document.getElementById("payment");
+    const movieSelect = document.getElementById("movieSelect");
 
-    // Set the maximum number of available seats
+    // Max seats
     const maxSeats = 10;
-    let seats = Array.from({ length: maxSeats }, (_, i) => i + 1); // 10 available seats
     let reservedSeats = JSON.parse(localStorage.getItem("reservedSeats")) || [];
 
     function renderSeats() {
         seatsContainer.innerHTML = "";
-        seats.forEach(seatNum => {
+        for (let i = 1; i <= maxSeats; i++) {
             const seat = document.createElement("div");
             seat.classList.add("seat");
-            seat.textContent = seatNum;
+            seat.textContent = i;
 
-            // If the seat is reserved, mark it as such
-            if (reservedSeats.includes(seatNum)) {
+            // If seat is reserved, mark it as red and disable click
+            if (reservedSeats.includes(i)) {
                 seat.classList.add("reserved");
-                seat.style.pointerEvents = "none"; // Disable click on reserved seats
+                seat.style.pointerEvents = "none";
             } else {
-                seat.addEventListener("click", () => toggleSeatSelection(seatNum, seat));
+                seat.addEventListener("click", () => toggleSeatSelection(seat));
             }
 
             seatsContainer.appendChild(seat);
-        });
+        }
     }
 
-    function toggleSeatSelection(seatNum, seat) {
+    function toggleSeatSelection(seat) {
         if (seat.classList.contains("selected")) {
             seat.classList.remove("selected");
-        } else if (reservedSeats.length < maxSeats) { // Prevent selecting more than available seats
+        } else {
             seat.classList.add("selected");
         }
     }
 
     function calculateTotalPrice() {
-        const selectedSeats = document.querySelectorAll(".seat.selected");
+        const selectedSeats = document.querySelectorAll(".seat.selected").length;
         let price = movieSelect.value === "Mission Impossible" ? 380 : 350;
-        return selectedSeats.length * price;
+        return selectedSeats * price;
     }
 
     function reserveSeats() {
@@ -66,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
             seat.classList.add("reserved");
         });
 
-        // Save the reserved seats in localStorage
+        // Save reserved seats
         localStorage.setItem("reservedSeats", JSON.stringify(reservedSeats));
 
         displayReservedSeats();
@@ -88,17 +87,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function resetOnMovieChange() {
-        reservedSeats = []; // Clear selected seats
-        localStorage.removeItem("reservedSeats"); // Remove stored reservations
-        paymentInput.value = ""; // Reset payment input
+        reservedSeats = [];
+        localStorage.removeItem("reservedSeats");
+        paymentInput.value = "";
         renderSeats();
         displayReservedSeats();
     }
 
-    // Event listeners
     document.querySelector(".reserve-btn").addEventListener("click", reserveSeats);
     document.querySelector(".reset-btn").addEventListener("click", resetReservations);
-    movieSelect.addEventListener("change", resetOnMovieChange); // Reset when movie changes
+    movieSelect.addEventListener("change", resetOnMovieChange);
 
     renderSeats();
     displayReservedSeats();
