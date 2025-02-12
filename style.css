@@ -1,30 +1,84 @@
-/* General Styles */
+/* General Styling */
 body {
+    margin: 0;
+    padding-top: 100px;
     font-family: 'Arial', sans-serif;
-    background: #222;
+    background: url('bg.avif') no-repeat center center fixed;
+    background-size: cover;
     color: white;
     text-align: center;
-    padding: 20px;
+}
+
+/* Background Blur */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('bg.avif') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(4px);
+    z-index: -1;
+}
+
+/* Header */
+.header {
+    background: #111;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo */
+.logo {
+    width: 40px;
+    height: auto;
+    border-radius: 12px;
+    margin-right: 10px;
 }
 
 /* Title */
-h1 {
-    font-size: 32px;
-    margin-bottom: 30px;
+.title {
+    font-size: 20px;
+    color: white;
+    margin: 0;
 }
 
 /* Movie Selection */
-label, select, input {
-    font-size: 18px;
-    padding: 8px;
-    margin: 10px;
-    border-radius: 5px;
+.movie-selection {
+    margin-top: 20px;
 }
 
-select {
-    background: #444;
+.movie-selection label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Consistent Styling for Movie & Payment Method Dropdowns */
+.movie-selection select, 
+.payment-container select {
+    background: #333;
     color: white;
-    border: none;
+    border: 2px solid black;  /* Changed border to solid black */
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.movie-selection select:hover, 
+.payment-container select:hover {
+    background: #444;
 }
 
 /* Cinema Layout */
@@ -39,7 +93,7 @@ select {
 .screen {
     width: 250px;
     height: 50px;
-    background: #000;
+    background: black;
     color: white;
     font-size: 18px;
     display: flex;
@@ -49,14 +103,13 @@ select {
     margin-bottom: 20px;
 }
 
-/* Seat Grid */
+/* Seats */
 #seats-container {
     display: grid;
-    grid-template-columns: repeat(5, 60px); /* Adjust for better seat layout */
+    grid-template-columns: repeat(5, 60px);
     gap: 10px;
 }
 
-/* Seat Styling */
 .seat {
     width: 60px;
     height: 60px;
@@ -67,12 +120,11 @@ select {
     font-weight: bold;
     cursor: pointer;
     border-radius: 8px;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
-/* Seat States */
 .seat:hover {
-    background: #32a852; /* Light green hover */
+    background: #32a852;
 }
 
 .seat.selected {
@@ -86,19 +138,63 @@ select {
     cursor: not-allowed;
 }
 
+.seat.selected {
+    background: green !important;
+    color: white;
+}
+
+/* Reserved seats turn red */
+.seat.reserved {
+    background: red !important;
+    color: white;
+    cursor: not-allowed;
+}
+
 /* Payment Section */
 .payment {
     margin-top: 20px;
 }
 
+.payment label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.payment input {
+    background: #222;
+    color: white;
+    border: 2px solid black;  
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 20px;
+    width: 220px;
+    text-align: center;
+}
+
+/* Prevent Hover Color Change on Payment Input */
+.payment input:hover {
+    background: #222;
+}
+
+/* Payment Container */
+.payment-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.payment-container label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Buttons */
 button {
-    padding: 10px 15px;
+    padding: 12px 18px;
     font-size: 18px;
-    margin: 10px;
     cursor: pointer;
     border: none;
     border-radius: 8px;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 button:hover {
@@ -108,11 +204,15 @@ button:hover {
 .reserve-btn {
     background: #28a745;
     color: white;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .reset-btn {
     background: #dc3545;
     color: white;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Reserved Seats Display */
